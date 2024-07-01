@@ -1,7 +1,6 @@
 package com.example.Book_My_Show_Appl.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,10 +17,20 @@ import java.time.LocalTime;
 
 public class Show {
 
-    private String movieName;
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private Integer showId;
 
-    private LocalDate date;
+    private LocalDate showDate;
 
-    private LocalTime time;
+    private LocalTime showTime;
+
+    @JoinColumn
+    @ManyToOne
+    private Movie movie;
+
+    @JoinColumn
+    @ManyToOne
+    private Theater theater;
 
 }
