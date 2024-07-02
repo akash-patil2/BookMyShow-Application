@@ -4,6 +4,7 @@ package com.example.Book_My_Show_Appl.Model;
 import com.example.Book_My_Show_Appl.Enum.SeatType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.web.WebProperties;
@@ -11,6 +12,7 @@ import org.springframework.boot.autoconfigure.web.WebProperties;
 @Table
 @Entity
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 
@@ -30,4 +32,8 @@ public class ShowSeats {
     private Boolean isBooked;
 
     private Boolean isFoodAttached;
+
+    @JoinColumn
+    @ManyToOne
+    private Show show;
 }

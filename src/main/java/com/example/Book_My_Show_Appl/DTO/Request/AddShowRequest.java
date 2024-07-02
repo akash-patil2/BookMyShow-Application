@@ -13,4 +13,8 @@ public class AddShowRequest {
 
     private LocalDate showDate;
 
+    private String movieName;
+
+    private Integer theaterId;
+
 }

@@ -118,6 +118,8 @@ public class TheaterService {
             theaterSeatsList.add(theaterSeats);
         }
 
+        theater.setTheaterSeatsList(theaterSeatsList);
+        theaterRepository.save(theater);
 
         // Saving all the generated Theater seats into the DB
         theaterSeatsRepository.saveAll(theaterSeatsList);
