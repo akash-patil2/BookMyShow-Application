@@ -1,11 +1,12 @@
 package com.example.Book_My_Show_Appl.Model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.boot.autoconfigure.web.WebProperties;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -13,19 +14,35 @@ import java.time.LocalTime;
 @Table
 @Entity
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 
 public class Ticket {
 
+    @Id
+    @GeneratedValue (strategy = GenerationType.UUID)
+    private String ticketId;
+
     private String movieName;
 
-    private Integer seatBooked;
+    private Integer bookedSeats;
 
-    private LocalDate date;
+    private LocalDate showDate;
 
-    private LocalTime time;
+    private LocalTime showTime;
 
-    private Double totalAmount;
+    private Integer totalAmount;
+
+    private String theaterName;
+
+    @JoinColumn
+    @ManyToOne
+    private Show show;
+
+    @JoinColumn
+    @ManyToOne
+    private User user;
+
 
 }

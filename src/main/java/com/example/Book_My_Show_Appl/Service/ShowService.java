@@ -57,6 +57,9 @@ public class ShowService {
             showSeatsList.add(showSeats);
         }
 
+        // Setting the bi directional mapping attribute
+        show.setShowSeatsList(showSeatsList);
+
         showSeatsRepository.saveAll(showSeatsList);
 
         return "The Show has been saved to the DB with showId " + show.getShowId();
