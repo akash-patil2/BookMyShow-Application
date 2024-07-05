@@ -22,5 +22,6 @@ public class TicketController {
 
     public Ticket bookTicket(@RequestBody BookTicketRequest bookTicketRequest){
 
+        return ticketService.addTicket(bookTicketRequest);
     }
 }
