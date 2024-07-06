@@ -12,7 +12,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Table
+@Table (name = "shows")
 @Entity
 @Data
 @Builder
@@ -37,7 +37,7 @@ public class Show {
     @ManyToOne
     private Theater theater;
 
-    @OneToMany (mappedBy = "show" , cascade = CascadeType.ALL)
+    @OneToMany (mappedBy = "show", cascade = CascadeType.ALL)
     private List<ShowSeats> showSeatsList = new ArrayList<>();
 
 }

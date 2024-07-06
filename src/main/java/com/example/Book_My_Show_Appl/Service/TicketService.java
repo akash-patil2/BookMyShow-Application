@@ -1,6 +1,7 @@
 package com.example.Book_My_Show_Appl.Service;
 
 import com.example.Book_My_Show_Appl.DTO.Request.BookTicketRequest;
+import com.example.Book_My_Show_Appl.DTO.Response.TicketResponse;
 import com.example.Book_My_Show_Appl.Enum.SeatType;
 import com.example.Book_My_Show_Appl.Model.Show;
 import com.example.Book_My_Show_Appl.Model.ShowSeats;
@@ -30,7 +31,7 @@ public class TicketService {
     @Autowired
     private UserRepository userRepository;
 
-    public Ticket addTicket(BookTicketRequest bookTicketRequest){
+    public String addTicket(BookTicketRequest bookTicketRequest){
 
         // Find the Show entity
         Show show = showRepository.findById(bookTicketRequest.getShowId()).get();
@@ -63,6 +64,7 @@ public class TicketService {
                 .movieName(show.getMovie().getMovieName())
                 .theaterName(show.getTheater().getTheaterName())
                 .totalAmount(totalAmount)
+                .bookedSeats(bookTicketRequest.getRequestedSeats().toString())
                 .show(show)
                 .user(user)
                 .build();
@@ -72,6 +74,23 @@ public class TicketService {
 
         // Save the Ticket into DB & return Ticket entity (Ticket response)
         ticket = ticketRepository.save(ticket);
-        return ticket;
+        return ticket.getTicketId();
+    }
+
+    public TicketResponse generateTicket(String ticketId){
+
+        Ticket ticket = ticketRepository.findById(ticketId).get();
+
+        //Entity needs to be converted into TicketResponse
+        TicketResponse ticketResponse = TicketResponse.builder().bookedSeats(ticket.getBookedSeats())
+                .movieName(ticket.getMovieName())
+                .showTime(ticket.getShowTime())
+                .showDate(ticket.getShowDate())
+                .theaterName(ticket.getTheaterName())
+                .totalAmount(ticket.getTotalAmount())
+                .build();
+
+        return ticketResponse;
+
     }
 }

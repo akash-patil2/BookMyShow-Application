@@ -1,28 +1,19 @@
-package com.example.Book_My_Show_Appl.Model;
+package com.example.Book_My_Show_Appl.DTO.Response;
 
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.autoconfigure.web.WebProperties;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-@Table (name = "tickets")
-@Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class Ticket {
-
-    @Id
-    @GeneratedValue (strategy = GenerationType.UUID)
-    private String ticketId;
+public class TicketResponse {
 
     private String movieName;
 
@@ -35,14 +26,5 @@ public class Ticket {
     private Integer totalAmount;
 
     private String theaterName;
-
-    @JoinColumn
-    @ManyToOne
-    private Show show;
-
-    @JoinColumn
-    @ManyToOne
-    private User user;
-
 
 }
