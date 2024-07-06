@@ -26,7 +26,7 @@ public class Ticket {
 
     private String movieName;
 
-    private Integer bookedSeats;
+    private String bookedSeats;
 
     private LocalDate showDate;
 

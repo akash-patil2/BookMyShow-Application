@@ -17,7 +17,7 @@ public class TicketResponse {
 
     private String movieName;
 
-    private Integer bookedSeats;
+    private String bookedSeats;
 
     private LocalDate showDate;
 
